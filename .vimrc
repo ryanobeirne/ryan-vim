@@ -65,7 +65,7 @@ highlight Search cterm=NONE ctermfg=NONE ctermbg=8
 
 " Toggle highlight.
 let hlstate=0
-nnoremap <ESC><ESC> :if (hlstate%2 == 0) \| nohlsearch \| else \| set hlsearch \| endif \| let hlstate=hlstate+1<CR>
+nnoremap <leader><ESC> :if (hlstate%2 == 0) \| nohlsearch \| else \| set hlsearch \| endif \| let hlstate=hlstate+1<CR>
 
 " Sessions
 let g:session_dir = '~/.vim/sessions'
