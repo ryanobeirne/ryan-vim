@@ -12,6 +12,15 @@ set hls
 set tabpagemax=100
 set mouse=a
 set backspace=indent,eol,start
+set showtabline=2 " Always show tabline
+set undodir=~/.vimundodir
+set undofile
+
+" Aliases
+cnoreabbrev git !git
+cnoreabbrev mkdir !mkdir
+cnoreabbrev cargo !cargo
+cnoreabbrev rename Rename
 
 " Keybindings
 "" Line navigation
@@ -21,9 +30,14 @@ nnoremap <C-a> 0
 nnoremap <C-e> $
 "" Tab navigation
 nnoremap <C-l> :tabnext<CR>
+nnoremap <leader><C-l> :+tabmove<CR>
 nnoremap <C-h> :tabprev<CR>
+nnoremap <leader><C-h> :-tabmove<CR>
 nnoremap <C-k> :tabfirst<CR>
+nnoremap <leader><C-k> :0tabmove<CR>
 nnoremap <C-j> :tablast<CR>
+nnoremap <leader><C-j> :$tabmove<CR>
+"" Show/Hide NERDTree
 nnoremap <C-n> :NERDTreeToggle<CR>
 "" Select All
 nnoremap <leader>a ggVG
@@ -38,6 +52,10 @@ nnoremap <leader>y "*y
 nnoremap <leader>Y "*Y
 vnoremap <leader>y "*y
 vnoremap <leader>Y "*Y
+"" Show/hide whitespace characters
+set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<,space:*
+nnoremap <leader>l :set list<CR>
+nnoremap <leader>L :set list!<CR>
 
 " Enable crontab editing in place
 autocmd BufNewFile,BufRead crontab.* set nobackup | set nowritebackup
