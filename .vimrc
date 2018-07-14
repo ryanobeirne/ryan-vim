@@ -12,6 +12,8 @@ let mapleader="-"
 set tabpagemax=100
 set mouse=a
 set guifont=xos4\ Terminus\ 12
+set undodir=~/.vimundodir
+set undofile
 
 " Keybindings
 "" Line navigation
