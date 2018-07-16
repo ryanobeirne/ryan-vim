@@ -21,6 +21,7 @@ cnoreabbrev git !git
 cnoreabbrev mkdir !mkdir
 cnoreabbrev cargo !cargo
 cnoreabbrev rename Rename
+cnoreabbrev vimposter !vimposter
 
 " Keybindings
 "" Line navigation
