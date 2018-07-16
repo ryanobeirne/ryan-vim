@@ -15,6 +15,13 @@ set guifont=xos4\ Terminus\ 12
 set undodir=~/.vimundodir
 set undofile
 
+" Aliases
+cnoreabbrev git !git
+cnoreabbrev mkdir !mkdir
+cnoreabbrev cargo !cargo
+cnoreabbrev rename Rename
+cnoreabbrev vimposter !vimposter
+
 " Keybindings
 "" Line navigation
 inoremap <C-a> <C-o>^
@@ -41,6 +48,10 @@ vnoremap <leader>y "+y
 vnoremap <leader>Y "+Y
 "" NERDTree
 nnoremap <C-n> :NERDTreeToggle<CR>
+"" Show/hide whitespace characters
+set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<,space:*
+nnoremap <leader>l :set list<CR>
+nnoremap <leader>L :set list!<CR>
 
 " Enable crontab editing in place
 au BufNewFile,BufRead crontab.* set nobackup | set nowritebackup
