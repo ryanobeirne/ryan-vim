@@ -14,6 +14,7 @@ set mouse=a
 set guifont=xos4\ Terminus\ 12
 set undodir=~/.vimundodir
 set undofile
+set scrolloff=5
 
 " Aliases
 cnoreabbrev git !git
