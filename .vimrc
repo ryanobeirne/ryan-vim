@@ -40,6 +40,9 @@ nnoremap <C-j> :tablast<CR>
 nnoremap <leader><C-j> :$tabmove<CR>
 "" Show/Hide NERDTree
 nnoremap <C-n> :NERDTreeToggle<CR>
+"" Upcase/Downcase
+nnoremap <leader>U viwU
+nnoremap <leader>u viwu
 "" Select All
 nnoremap <leader>a ggVG
 vnoremap <leader>a <ESC>ggVG

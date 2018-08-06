@@ -40,3 +40,6 @@
 [submodule ".vim/bundle/ale"]
 	path = .vim/bundle/ale
 	url = https://github.com/w0rp/ale
+[submodule ".vim/bundle/surround"]
+	path = .vim/bundle/surround
+	url = https://tpope.io/vim/surround.git
