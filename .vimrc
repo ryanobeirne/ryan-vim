@@ -15,6 +15,8 @@ set backspace=indent,eol,start
 set showtabline=2 " Always show tabline
 set undodir=~/.vimundodir
 set undofile
+set scrolloff=5
+set relativenumber
 
 " Aliases
 cnoreabbrev git !git
@@ -40,6 +42,8 @@ nnoremap <C-j> :tablast<CR>
 nnoremap <leader><C-j> :$tabmove<CR>
 "" Show/Hide NERDTree
 nnoremap <C-n> :NERDTreeToggle<CR>
+"" Toggle GitGutter
+nnoremap <leader>g :GitGutterToggle<CR>
 "" Upcase/Downcase
 nnoremap <leader>U viwU
 nnoremap <leader>u viwu
