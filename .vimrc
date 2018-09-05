@@ -15,6 +15,7 @@ set guifont=xos4\ Terminus\ 12
 set undodir=~/.vimundodir
 set undofile
 set scrolloff=5
+set relativenumber
 
 " Aliases
 cnoreabbrev git !git
@@ -49,6 +50,8 @@ vnoremap <leader>y "+y
 vnoremap <leader>Y "+Y
 "" NERDTree
 nnoremap <C-n> :NERDTreeToggle<CR>
+"" Toggle GitGutter
+nnoremap <leader>g :GitGutterToggle
 "" Show/hide whitespace characters
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<,space:*
 nnoremap <leader>l :set list<CR>
@@ -59,6 +62,11 @@ au BufNewFile,BufRead crontab.* set nobackup | set nowritebackup
 
 " Set syntax for specific extensions
 autocmd BufNewFile,BufRead *.env  set syntax=dosini
+
+" Rust
+set hidden
+let g:racer_cmd = "~/.cargo/bin/racer"
+let g:racer_experimental_completer = 1
 
 " Last position
 if has("autocmd")
