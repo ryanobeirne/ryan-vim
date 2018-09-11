@@ -18,6 +18,14 @@ set undofile
 set scrolloff=5
 set relativenumber
 
+" Rust racer
+set hidden
+let g:racer_cmd = "/Users/Spoonflower/.cargo/bin/racer"
+au FileType rust nmap gd <Plug>(rust-def)
+au FileType rust nmap gs <Plug>(rust-def-split)
+au FileType rust nmap gx <Plug>(rust-def-vertical)
+au FileType rust nmap <leader>gd <Plug>(rust-doc)
+
 " Aliases
 cnoreabbrev git !git
 cnoreabbrev mkdir !mkdir
@@ -31,6 +39,8 @@ inoremap <C-a> <C-o>^
 inoremap <C-e> <C-o>$
 nnoremap <C-a> 0
 nnoremap <C-e> $
+"" Omnicompletion
+inoremap <C-<leader>> <C-x><C-o>
 "" Tab navigation
 nnoremap <C-l> :tabnext<CR>
 nnoremap <leader><C-l> :+tabmove<CR>
