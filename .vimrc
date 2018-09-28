@@ -27,9 +27,9 @@ au FileType rust nmap gx <Plug>(rust-def-vertical)
 au FileType rust nmap <leader>gd <Plug>(rust-doc)
 
 " Aliases
-cnoreabbrev git !git
-cnoreabbrev mkdir !mkdir
-cnoreabbrev cargo !cargo
+"cnoreabbrev git !git
+"cnoreabbrev mkdir !mkdir
+"cnoreabbrev cargo !cargo
 cnoreabbrev rename Rename
 cnoreabbrev vimposter !vimposter
 
@@ -79,7 +79,7 @@ nnoremap <leader>L :set list!<CR>
 autocmd BufNewFile,BufRead crontab.* set nobackup | set nowritebackup
 
 " Set syntax for specific extensions
-autocmd BufNewFile,BufRead *.env  set syntax=dosini
+autocmd BufNewFile,BufRead *.env,*.cblindata  set syntax=dosini
 if (&ft=='mail')
     set spell
 endif
