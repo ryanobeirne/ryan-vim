@@ -5,7 +5,7 @@ filetype plugin indent on
 set updatetime=100
 set number cursorline hlsearch
 syntax on
-set smartindent autoindent tabstop=2 softtabstop=2 shiftwidth=2
+set smartindent autoindent tabstop=4 softtabstop=4 shiftwidth=4
 set ignorecase smartcase
 set clipboard=unnamed
 let mapleader="-"
@@ -15,14 +15,7 @@ set guifont=xos4\ Terminus\ 12
 set undodir=~/.vimundodir
 set undofile
 set scrolloff=5
-set relativenumber
-
-" Aliases
-cnoreabbrev git !git
-cnoreabbrev mkdir !mkdir
-cnoreabbrev cargo !cargo
-cnoreabbrev rename Rename
-cnoreabbrev vimposter !vimposter
+"set relativenumber
 
 " Keybindings
 "" Line navigation
@@ -35,6 +28,17 @@ nnoremap <C-l> :tabnext<CR>
 nnoremap <C-h> :tabprev<CR>
 nnoremap <C-k> :tabfirst<CR>
 nnoremap <C-j> :tablast<CR>
+"" Buffer navigation
+nnoremap <M-h> :bprev<CR>
+nnoremap <M-Left> :bprev<CR>
+nnoremap <M-l> :bnext<CR>
+nnoremap <M-Right> :bnext<CR>
+nnoremap <M-k> :bfirst<CR>
+nnoremap <M-Up> :bfirst<CR>
+nnoremap <M-j> :blast<CR>
+nnoremap <M-Down> :blast<CR>
+
+
 "" Select All
 nnoremap <leader>a ggVG
 vnoremap <leader>a <ESC>ggVG
