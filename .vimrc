@@ -3,7 +3,7 @@ execute pathogen#infect()
 filetype plugin indent on
 
 set updatetime=100
-set number cursorline hlsearch
+set number cursorline hlsearch incsearch
 syntax on
 set smartindent autoindent tabstop=4 softtabstop=4 shiftwidth=4
 set ignorecase smartcase
