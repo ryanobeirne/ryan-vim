@@ -8,23 +8,31 @@ syntax on
 set smartindent autoindent tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 set ignorecase smartcase
 let mapleader="-"
-set hls
+set hlsearch incsearch
 set tabpagemax=100
 set mouse=a
 set backspace=indent,eol,start
-set showtabline=2 " Always show tabline
+"set showtabline=2 " Always show tabline
 set undodir=~/.vimundodir
 set undofile
 set scrolloff=5
-set relativenumber
+"set relativenumber
 
 " Rust racer
 set hidden
 let g:racer_cmd = "/Users/Spoonflower/.cargo/bin/racer"
+let g:racer_experimental_completer = 1
 au FileType rust nmap gd <Plug>(rust-def)
 au FileType rust nmap gs <Plug>(rust-def-split)
-au FileType rust nmap gx <Plug>(rust-def-vertical)
+au FileType rust nmap gv <Plug>(rust-def-vertical)
 au FileType rust nmap <leader>gd <Plug>(rust-doc)
+
+let g:ale_fixers = {
+\   'ruby': [
+\       'rubocop --auto-correct %',
+\       {buffer, lines -> filter(lines, 'v:val !=~ ''^\s*//''')},
+\   ],
+\}
 
 " Aliases
 "cnoreabbrev git !git
@@ -32,8 +40,10 @@ au FileType rust nmap <leader>gd <Plug>(rust-doc)
 "cnoreabbrev cargo !cargo
 cnoreabbrev rename Rename
 cnoreabbrev vimposter !vimposter
+cnoreabbrev tabber set tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab
 
 " Keybindings
+nnoremap U :echo 'Turn off your CAPS LOCK, dummy!'<CR>
 "" Line navigation
 inoremap <C-a> <C-o>^
 inoremap <C-e> <C-o>$
@@ -50,6 +60,20 @@ nnoremap <C-k> :tabfirst<CR>
 nnoremap <leader><C-k> :0tabmove<CR>
 nnoremap <C-j> :tablast<CR>
 nnoremap <leader><C-j> :$tabmove<CR>
+"" Buffer Navigation
+nnoremap <M-Left> :bprev<CR>
+nnoremap <M-h> :bprev<CR>
+nnoremap <M-Right> :bnext<CR>
+nnoremap <M-l> :bnext<CR>
+nnoremap <M-Up> :bfirst<CR>
+nnoremap <M-k> :bfirst<CR>
+nnoremap <M-Down> :blast<CR>
+nnoremap <M-j> :blast<CR>
+"" Window Resizing
+nnoremap <leader>] :vertical resize +10<CR>
+nnoremap <leader>[ :vertical resize -10<CR>
+nnoremap <leader>} :resize +5<CR>
+nnoremap <leader>{ :resize -5<CR>
 "" Show/Hide NERDTree
 nnoremap <C-n> :NERDTreeToggle<CR>
 "" Toggle GitGutter
@@ -103,9 +127,16 @@ highlight CursorLine ctermbg=0
 
 " Toggle highlight.
 let hlstate=0
-nnoremap <leader><ESC> :if (hlstate%2 == 0) \| nohlsearch \| else \| set hlsearch \| endif \| let hlstate=hlstate+1<cr>
+nnoremap <leader><ESC> :if (hlstate%2 == 0) \| nohlsearch \| else \| set hlsearch \| endif \| let hlstate=hlstate+1<CR>
+nnoremap /<ESC> /$_$<CR>:echo 'derp'
 
-highlight DiffAdd    cterm=bold ctermfg=NONE ctermbg=22 gui=none guifg=bg guibg=Red
-highlight DiffDelete cterm=bold ctermfg=NONE ctermbg=52 gui=none guifg=bg guibg=Red
-highlight DiffChange cterm=bold ctermfg=NONE ctermbg=235  gui=none guifg=bg guibg=Red
-highlight DiffText   cterm=bold ctermfg=NONE ctermbg=8  gui=none guifg=bg guibg=Red
+highlight DiffAdd    cterm=bold ctermfg=NONE ctermbg=22  gui=none guifg=bg guibg=Red
+highlight DiffDelete cterm=bold ctermfg=NONE ctermbg=52  gui=none guifg=bg guibg=Red
+highlight DiffChange cterm=bold ctermfg=NONE ctermbg=235 gui=none guifg=bg guibg=Red
+highlight DiffText   cterm=bold ctermfg=NONE ctermbg=8   gui=none guifg=bg guibg=Red
+
+
+packloadall
+silent! helptags ALL
+
+let g:lightline#extensions#ale#enabled = 1
