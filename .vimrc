@@ -3,7 +3,7 @@ execute pathogen#infect()
 filetype plugin indent on
 
 set updatetime=100
-set number cursorline hlsearch incsearch
+set number cursorline hlsearch incsearch linebreak
 syntax on
 set smartindent autoindent tabstop=4 softtabstop=4 shiftwidth=4
 set ignorecase smartcase
@@ -60,6 +60,9 @@ nnoremap <leader>g :GitGutterToggle
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<,space:*
 nnoremap <leader>l :set list<CR>
 nnoremap <leader>L :set list!<CR>
+
+""Don't be a dummy
+nnoremap U :echo "TURN CAPS LOCK OFF, DUMMY!"<CR>
 
 " Enable crontab editing in place
 au BufNewFile,BufRead crontab.* set nobackup | set nowritebackup
