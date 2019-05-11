@@ -11,6 +11,7 @@ let mapleader="-"
 set hlsearch incsearch
 set tabpagemax=100
 set mouse=a
+set guifont=TerminusTTF:h16
 set backspace=indent,eol,start
 "set showtabline=2 " Always show tabline
 set undodir=~/.vimundodir
@@ -98,12 +99,18 @@ vnoremap <leader>Y "*Y
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<,space:*
 nnoremap <leader>l :set list<CR>
 nnoremap <leader>L :set list!<CR>
+"" Delete trailing whitespace
+nnoremap <leader>dt :%s/\s\+$//e<CR>
+vnoremap <leader>dt :s/\s\+$//e<CR>
+inoremap <C-d> <C-o>:s/\s\+$//e<CR>
+vnoremap <CR><CR> :s///g<CR>
 
 " Enable crontab editing in place
 autocmd BufNewFile,BufRead crontab.* set nobackup | set nowritebackup
 
 " Set syntax for specific extensions
-autocmd BufNewFile,BufRead *.env,*.cblindata  set syntax=dosini
+autocmd BufNewFile,BufRead *.env,*.cbp,*.cbx,*.cblindata  set syntax=dosini
+autocmd BufNewFile,BufRead *.mxf,*.pxf,*.cxf set syntax=xml
 if (&ft=='mail')
     set spell
 endif
@@ -119,7 +126,7 @@ let g:lightline = {
 \'colorscheme': 'twodark',
 \}
 let g:onedark_color_overrides = {
-\ "black": {"gui": "NONE", "cterm": "NONE", "cterm16": "NONE" },
+\ "black": {"gui": "#051421", "cterm": "NONE", "cterm16": "NONE" },
 \}
 colorscheme onedark
 highlight Search cterm=NONE ctermfg=NONE ctermbg=8
