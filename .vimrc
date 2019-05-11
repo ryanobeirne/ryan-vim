@@ -1,8 +1,17 @@
+let g:ale_completion_enabled = 1
 execute pathogen#infect()
+
+call plug#begin('~/.vim/plugged')
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+call plug#end()
 
 filetype plugin indent on
 
-set updatetime=100
+set updatetime=1000
 set number cursorline hlsearch incsearch linebreak
 syntax on
 set smartindent autoindent tabstop=4 softtabstop=4 shiftwidth=4
@@ -15,7 +24,19 @@ set guifont=xos4\ Terminus\ 12
 set undodir=~/.vimundodir
 set undofile
 set scrolloff=5
-"set relativenumber
+set relativenumber
+
+set grepprg=grep\ -nH\ $*
+let g:tex_flavor = "latex"
+
+set completeopt+=preview
+set completeopt+=menuone
+set completeopt+=longest
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
+" refresh the completion list
+imap <C-space> <Plug>(asyncomplete_force_refresh)
 
 " Keybindings
 "" Line navigation
@@ -68,16 +89,34 @@ nnoremap U :echo "TURN CAPS LOCK OFF, DUMMY!"<CR>
 au BufNewFile,BufRead crontab.* set nobackup | set nowritebackup
 
 " Set syntax for specific extensions
-autocmd BufNewFile,BufRead *.env  set syntax=dosini
+autocmd BufNewFile,BufRead *.env  set syntax=dosini ft=dosini
+"autocmd BufNewFile,BufRead *.conf  set syntax=conf ft=conf
 
 " Rust
-set hidden
 let g:racer_cmd = "~/.cargo/bin/racer"
 let g:racer_experimental_completer = 1
+set hidden
+
+"if executable('racer')
+	"autocmd User asyncomplete_setup call asyncomplete#register_source(
+		"\ asyncomplete#sources#racer#get_source_options())
+"endif
+
+if executable('rls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'rls',
+        \ 'cmd': {server_info->['rustup', 'run', 'stable', 'rls']},
+        \ 'whitelist': ['rust'],
+        \ })
+endif
+
 au FileType rust nmap gd <Plug>(rust-def)
 au FileType rust nmap gs <Plug>(rust-def-split)
 au FileType rust nmap gx <Plug>(rust-def-vertical)
 au FileType rust nmap <leader>gd <Plug>(rust-doc)
+
+" Latex
+let g:livepreview_previewer = 'okular'
 
 " Last position
 if has("autocmd")
