@@ -11,46 +11,46 @@ call plug#end()
 
 filetype plugin indent on
 
-set updatetime=1000
+set updatetime=100
 set number cursorline hlsearch incsearch linebreak
 syntax on
-set smartindent autoindent tabstop=4 softtabstop=4 shiftwidth=4
+set smartindent autoindent tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<,space:*
 set ignorecase smartcase
 set clipboard=unnamed
 let mapleader="-"
 set tabpagemax=100
 set mouse=a
-set guifont=xos4\ Terminus\ 12
+set backspace=indent,eol,start
+set guifont=TerminusTTF:h16
 set undodir=~/.vimundodir
 set undofile
 set scrolloff=5
-set relativenumber
 
 set grepprg=grep\ -nH\ $*
 let g:tex_flavor = "latex"
 
-set completeopt+=preview
-set completeopt+=menuone
-set completeopt+=longest
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
-" refresh the completion list
-imap <C-space> <Plug>(asyncomplete_force_refresh)
-
+" Aliases
 cnoreabbrev rename Rename
 cnoreabbrev vimposter !vimposter
 cnoreabbrev tabber set tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab
 
 " Keybindings
 nnoremap U :echo 'Turn off your CAPS LOCK, dummy!'<CR>
+
+"" Tab completion
+set completeopt+=preview
+set completeopt+=menuone
+set completeopt+=longest
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
+"" refresh the completion list
+imap <C-space> <Plug>(asyncomplete_force_refresh)
+
 "" Line navigation
 inoremap <C-a> <C-o>^
 inoremap <C-e> <C-o>$
-nnoremap <C-a> 0
-nnoremap <C-e> $
-"" Omnicompletion
-inoremap <C-<leader>> <C-x><C-o>
 "" Tab navigation
 nnoremap <C-l> :tabnext<CR>
 nnoremap <leader><C-l> :+tabmove<CR>
@@ -94,17 +94,12 @@ vnoremap <leader>Y "*Y
 nnoremap <C-n> :NERDTreeToggle<CR>
 "" Toggle GitGutter
 nnoremap <leader>g :GitGutterToggle
-"" Show/hide whitespace characters
-set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<,space:*
 nnoremap <leader>l :set list<CR>
 nnoremap <leader>L :set list!<CR>
 "" Delete trailing whitespace
 nnoremap <leader>dt :%s/\s\+$//e<CR>
 vnoremap <leader>dt :s/\s\+$//e<CR>
 inoremap <C-d> <C-o>:s/\s\+$//e<CR>
-
-""Don't be a dummy
-nnoremap U :echo "TURN CAPS LOCK OFF, DUMMY!"<CR>
 
 " Enable crontab editing in place
 au BufNewFile,BufRead crontab.* set nobackup | set nowritebackup
@@ -117,27 +112,7 @@ if (&ft=='mail')
 endif
 
 " Rust
-let g:racer_cmd = "~/.cargo/bin/racer"
-let g:racer_experimental_completer = 1
-set hidden
-
-"if executable('racer')
-	"autocmd User asyncomplete_setup call asyncomplete#register_source(
-		"\ asyncomplete#sources#racer#get_source_options())
-"endif
-
-if executable('rls')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'rls',
-        \ 'cmd': {server_info->['rustup', 'run', 'stable', 'rls']},
-        \ 'whitelist': ['rust'],
-        \ })
-endif
-
-au FileType rust nmap gd <Plug>(rust-def)
-au FileType rust nmap gs <Plug>(rust-def-split)
-au FileType rust nmap gx <Plug>(rust-def-vertical)
-au FileType rust nmap <leader>gd <Plug>(rust-doc)
+autocmd FileType rust source ~/.vim/rust.vimrc
 
 " Latex
 let g:livepreview_previewer = 'okular'
