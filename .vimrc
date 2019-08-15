@@ -26,6 +26,7 @@ set guifont=TerminusTTF:h16
 set undodir=~/.vimundodir
 set undofile
 set scrolloff=5
+set diffopt+=vertical
 
 set grepprg=grep\ -nH\ $*
 let g:tex_flavor = "latex"
@@ -33,7 +34,10 @@ let g:tex_flavor = "latex"
 " Aliases
 cnoreabbrev rename Rename
 cnoreabbrev vimposter !vimposter
+cnoreabbrev nobackticks %s/`\(.*[^`\s]\)`/$(\1)/g
 cnoreabbrev tabber set tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab
+
+autocmd BufNewFile,BufRead *.lin,*.txt set tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab
 
 " Keybindings
 nnoremap U :echo 'Turn off your CAPS LOCK, dummy!'<CR>
@@ -100,6 +104,8 @@ nnoremap <leader>L :set list!<CR>
 nnoremap <leader>dt :%s/\s\+$//e<CR>
 vnoremap <leader>dt :s/\s\+$//e<CR>
 inoremap <C-d> <C-o>:s/\s\+$//e<CR>
+"" Convert \r to \n
+nnoremap <leader>n :%s/[\n\r]//g<CR>
 
 " Enable crontab editing in place
 au BufNewFile,BufRead crontab.* set nobackup | set nowritebackup
@@ -107,9 +113,7 @@ au BufNewFile,BufRead crontab.* set nobackup | set nowritebackup
 " Set syntax for specific extensions
 autocmd BufNewFile,BufRead *.env,*.cbp,*.cbx,*.cblindata  set syntax=dosini
 autocmd BufNewFile,BufRead *.mxf,*.pxf,*.cxf set syntax=xml
-if (&ft=='mail')
-    set spell
-endif
+autocmd FileType mail set spell
 
 " Rust
 autocmd FileType rust source ~/.vim/rust.vimrc
