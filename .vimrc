@@ -11,7 +11,7 @@ call plug#end()
 
 filetype plugin indent on
 
-set updatetime=1000
+set updatetime=100
 set number cursorline hlsearch incsearch linebreak
 syntax on
 set smartindent autoindent tabstop=4 softtabstop=4 shiftwidth=4
@@ -20,11 +20,14 @@ set clipboard=unnamed
 let mapleader="-"
 set tabpagemax=100
 set mouse=a
-set guifont=xos4\ Terminus\ 12
+set guifont=Source\ Code\ Pro\ Medium\ 12
 set undodir=~/.vimundodir
 set undofile
 set scrolloff=5
-set relativenumber
+"set relativenumber
+
+set wildmenu
+set wildmode=longest,list
 
 set grepprg=grep\ -nH\ $*
 let g:tex_flavor = "latex"
@@ -37,6 +40,8 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
 " refresh the completion list
 imap <C-space> <Plug>(asyncomplete_force_refresh)
+nnoremap <leader><leader> :LspHover<CR>
+nnoremap <F2> :LspRename<CR>
 
 " Keybindings
 "" Line navigation
@@ -90,6 +95,7 @@ au BufNewFile,BufRead crontab.* set nobackup | set nowritebackup
 
 " Set syntax for specific extensions
 autocmd BufNewFile,BufRead *.env  set syntax=dosini ft=dosini
+autocmd BufNewFile,BufRead *.ovpn set syntax=conf ft=conf
 "autocmd BufNewFile,BufRead *.conf  set syntax=conf ft=conf
 
 " Rust
@@ -114,6 +120,17 @@ au FileType rust nmap gd <Plug>(rust-def)
 au FileType rust nmap gs <Plug>(rust-def-split)
 au FileType rust nmap gx <Plug>(rust-def-vertical)
 au FileType rust nmap <leader>gd <Plug>(rust-doc)
+
+"Register ccls C++ lanuage server.
+if executable('ccls')
+   au User lsp_setup call lsp#register_server({
+      \ 'name': 'ccls',
+      \ 'cmd': {server_info->['ccls']},
+      \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'compile_commands.json'))},
+      \ 'initialization_options': {'cache': {'directory': '/tmp/ccls/cache' }},
+      \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
+      \ })
+endif
 
 " Latex
 let g:livepreview_previewer = 'okular'
