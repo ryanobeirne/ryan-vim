@@ -6,6 +6,7 @@ Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'prabirshrestha/asyncomplete-file.vim'
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 call plug#end()
 
@@ -38,6 +39,10 @@ set completeopt+=longest
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
+
+autocmd BufNew,BufRead *.sh :inoremap <expr> <Tab> pumvisible() ? "\<C-x><C-f>" : "\<Tab>"
+autocmd BufNew,BufRead *.sh :inoremap <expr> <S-Tab> pumvisible() ? "\<C-x><C-f>" : "\<S-Tab>"
+
 " refresh the completion list
 imap <C-space> <Plug>(asyncomplete_force_refresh)
 nnoremap <leader><leader> :LspHover<CR>

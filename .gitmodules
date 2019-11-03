@@ -67,3 +67,6 @@
 [submodule ".vim/plugged/vim-lsp"]
 	path = .vim/plugged/vim-lsp
 	url = https://github.com/prabirshrestha/vim-lsp.git
+[submodule ".vim/plugged/asyncomplete-file.vim"]
+	path = .vim/plugged/asyncomplete-file.vim
+	url = https://github.com/prabirshrestha/asyncomplete-file.vim.git
