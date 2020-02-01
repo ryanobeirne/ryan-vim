@@ -27,6 +27,8 @@ set undofile
 set scrolloff=5
 "set relativenumber
 
+cnoreabbrev tabber set tabstop=8 softtabstop=8 shiftwidth=8
+
 set wildmenu
 set wildmode=longest,list
 
@@ -52,8 +54,6 @@ nnoremap <F2> :LspRename<CR>
 "" Line navigation
 inoremap <C-a> <C-o>^
 inoremap <C-e> <C-o>$
-nnoremap <C-a> 0
-nnoremap <C-e> $
 "" Tab navigation
 nnoremap <C-l> :tabnext<CR>
 nnoremap <C-h> :tabprev<CR>
