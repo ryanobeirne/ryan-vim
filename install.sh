@@ -3,8 +3,8 @@ set -e
 
 # Link repo files in home directory
 rm -ri ~/{.vim,.vimrc} || :
-ln -s "$(realpath $(dirname "$0"))/.vim" ~/
-ln -s "$(realpath $(dirname "$0"))/.vimrc" ~/
+ln -s "$(realpath "$(dirname "$0")")/.vim" ~/
+ln -s "$(realpath "$(dirname "$0")")/.vimrc" ~/
 
 # Make undo directory
 [[ -d ~/.vimundodir ]] || mkdir ~/.vimundodir
@@ -17,4 +17,4 @@ for dir in bundle/*/; do
 done
 
 # Update vim-plug plugins
-vim -c PlugInstall -c q -c Startify
+vim -c PlugClean -c PlugInstall -c q -c Startify
