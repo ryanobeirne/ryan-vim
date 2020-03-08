@@ -103,6 +103,14 @@ autocmd BufNewFile,BufRead *.env  set syntax=dosini ft=dosini
 autocmd BufNewFile,BufRead *.ovpn set syntax=conf ft=conf
 "autocmd BufNewFile,BufRead *.conf  set syntax=conf ft=conf
 
+" Filename completions
+au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
+    \ 'name': 'file',
+    \ 'whitelist': ['*'],
+    \ 'priority': 10,
+    \ 'completor': function('asyncomplete#sources#file#completor')
+    \ }))
+
 " Rust
 let g:racer_cmd = "~/.cargo/bin/racer"
 let g:racer_experimental_completer = 1
