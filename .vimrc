@@ -2,6 +2,7 @@ let g:ale_completion_enabled = 1
 execute pathogen#infect()
 
 call plug#begin('~/.vim/plugged')
+Plug 'tpope/vim-fugitive'
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete.vim'
