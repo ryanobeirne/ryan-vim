@@ -90,8 +90,7 @@ nnoremap <C-n> :NERDTreeToggle<CR>
 nnoremap <leader>g :GitGutterToggle
 "" Show/hide whitespace characters
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<,space:*
-nnoremap <leader>l :set list<CR>
-nnoremap <leader>L :set list!<CR>
+nnoremap <leader>l :set list!<CR>
 
 ""Don't be a dummy
 nnoremap U :echo "TURN CAPS LOCK OFF, DUMMY!"<CR>
@@ -167,8 +166,7 @@ highlight Visual ctermbg=0
 highlight Search cterm=NONE ctermfg=NONE ctermbg=8
 
 " Toggle highlight.
-let hlstate=0
-nnoremap <leader><ESC> :if (hlstate%2 == 0) \| nohlsearch \| else \| set hlsearch \| endif \| let hlstate=hlstate+1<CR>
+nnoremap <leader><ESC> :set hlsearch!<CR>
 
 " Sessions
 let g:session_dir = '~/.vim/sessions'
