@@ -29,6 +29,7 @@ set scrolloff=5
 "set relativenumber
 
 cnoreabbrev tabber set tabstop=8 softtabstop=8 shiftwidth=8
+cnoreabbrev wsudo w !sudo tee '%'
 
 set wildmenu
 set wildmode=longest,list
