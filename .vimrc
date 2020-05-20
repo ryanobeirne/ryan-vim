@@ -85,8 +85,6 @@ nnoremap <leader>y "+y
 nnoremap <leader>Y "+Y
 vnoremap <leader>y "+y
 vnoremap <leader>Y "+Y
-"" NERDTree
-nnoremap <C-n> :NERDTreeToggle<CR>
 "" Toggle GitGutter
 nnoremap <leader>g :GitGutterToggle
 "" Show/hide whitespace characters
